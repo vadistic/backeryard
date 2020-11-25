@@ -1,5 +1,12 @@
+# codegen
 *.graphql.d.ts
 *.graphqls.d.ts
 *.ts.d.ts
 __generated__
+
+# build
 .next
+
+# pwa
+public/*.js
+public/*.map

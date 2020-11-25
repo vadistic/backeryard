@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { HttpLink } from '@apollo/client/link/http'
+import { SchemaLink } from '@apollo/client/link/schema'
 
 import { cache } from './cache'
 import { ResolverContext } from './types'
@@ -12,13 +13,11 @@ function isSSG() {
 
 function createIsomorphLink(context: ResolverContext = {}) {
   if (isSSG()) {
-    const { SchemaLink } = require('@apollo/client/link/schema')
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { schema } = require('./schema')
 
     return new SchemaLink({ schema, context })
   }
-
-  const { HttpLink } = require('@apollo/client')
 
   return new HttpLink({
     uri: '/api/graphql',
@@ -26,7 +25,7 @@ function createIsomorphLink(context: ResolverContext = {}) {
   })
 }
 
-function createApolloClient(context?: ResolverContext) {
+function initApolloClient(context?: ResolverContext) {
   return new ApolloClient({
     ssrMode: isSSG(),
     link: createIsomorphLink(context),
@@ -40,7 +39,7 @@ export function getApolloClient(
   // a custom context which will be used by `SchemaLink` to server render pages
   context?: ResolverContext,
 ) {
-  const _apolloClient = apolloClient ?? createApolloClient(context)
+  const _apolloClient = apolloClient ?? initApolloClient(context)
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // get hydrated here

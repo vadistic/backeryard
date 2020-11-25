@@ -1,4 +1,13 @@
-module.exports = {
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
+
+const config = {
+  pwa: {
+    dest: 'public',
+    runtimeCaching,
+  },
+
   webpack(config, options) {
     // Fixes npm packages that depend on node modules
     // https://github.com/vercel/next.js/issues/7755
@@ -25,3 +34,5 @@ module.exports = {
     return config
   },
 }
+
+module.exports = process.env.NODE_ENV === 'production' ? withPWA(config) : config
