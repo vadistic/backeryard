@@ -27,7 +27,7 @@ export function getFirebase() {
     firebaseClient.performance()
   }
 
-  firebase.auth().languageCode = 'pl'
+  firebaseClient.auth().languageCode = 'pl'
 
   return firebaseClient
 }
