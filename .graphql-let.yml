@@ -1,9 +1,11 @@
-schema: 'lib/type-defs.ts'
-schemaEntrypoint: 'lib/schema.graphqls'
+schema: 'apollo/**/*.graphqls'
+schemaEntrypoint: 'apollo/schema.graphqls'
 documents: '**/*.graphql'
 plugins:
   - typescript
   - typescript-operations
   - typescript-react-apollo
-  - typescript-resolvers
+config:
+  dedupeOperationSuffix: true
+  addOperationExport: true
 cacheDir: __generated__

@@ -1,14 +1,4 @@
-import { ApolloServer } from 'apollo-server-micro'
-
-import { schema } from '../../lib/schema'
-
-const IS_DEV = process.env.NODE_ENV === 'development'
-
-const apolloServer = new ApolloServer({
-  schema,
-  introspection: IS_DEV,
-  playground: IS_DEV,
-})
+import { apolloServer } from '../../apollo/server'
 
 export const config = {
   api: {

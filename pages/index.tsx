@@ -2,13 +2,13 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-import { initializeApollo } from '../lib/apollo'
+import { getApolloClient } from '../apollo/client'
 import {
   useViewerQuery,
   useUpdateNameMutation,
   ViewerDocument,
   ViewerQuery,
-} from '../lib/queries/viewer.graphql'
+} from '../apollo/queries/viewer.graphql'
 
 const Index: React.FC = () => {
   const { viewer } = useViewerQuery().data!
@@ -54,7 +54,7 @@ const Index: React.FC = () => {
 }
 
 export async function getStaticProps() {
-  const apolloClient = initializeApollo()
+  const apolloClient = getApolloClient()
 
   await apolloClient.query({
     query: ViewerDocument,

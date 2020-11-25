@@ -2,7 +2,7 @@ import { ApolloProvider } from '@apollo/client'
 import { AppProps } from 'next/app'
 import React from 'react'
 
-import { useApollo } from '../lib/apollo'
+import { useApollo } from '../apollo/hooks'
 
 export const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState)
