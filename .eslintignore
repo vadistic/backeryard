@@ -1,0 +1,5 @@
+*.graphql.d.ts
+*.graphqls.d.ts
+*.ts.d.ts
+__generated__
+.next
