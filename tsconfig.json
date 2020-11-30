@@ -16,8 +16,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", ".next", ".vercel"],
   "include": ["**/*.ts", "**/*.tsx"]
 }

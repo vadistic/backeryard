@@ -5,14 +5,8 @@ import { SchemaLink } from '@apollo/client/link/schema'
 import { cache } from './cache'
 import { ResolverContext } from './types'
 
-let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
-
-function isSSG() {
-  return typeof window === 'undefined'
-}
-
-function createIsomorphLink(context: ResolverContext = {}) {
-  if (isSSG()) {
+function createIsomorphLink(context?: ResolverContext) {
+  if (context && typeof window === 'undefined') {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { schema } = require('./schema')
 
@@ -27,31 +21,22 @@ function createIsomorphLink(context: ResolverContext = {}) {
 
 function initApolloClient(context?: ResolverContext) {
   return new ApolloClient({
-    ssrMode: isSSG(),
+    ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(context),
     cache,
   })
 }
 
-export function getApolloClient(
-  initialState: any = null,
-  // Pages with Next.js data fetching methods, like `getStaticProps`, can send
-  // a custom context which will be used by `SchemaLink` to server render pages
-  context?: ResolverContext,
-) {
-  const _apolloClient = apolloClient ?? initApolloClient(context)
+let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
-  // If your page has Next.js data fetching methods that use Apollo Client, the initial state
-  // get hydrated here
-  if (initialState) {
-    _apolloClient.cache.restore(initialState)
+export function getApolloClient(initialState: any = null, context?: ResolverContext) {
+  if (!apolloClient) {
+    apolloClient = initApolloClient(context)
   }
 
-  // For SSG and SSR always create a new Apollo Client
-  if (isSSG()) return _apolloClient
+  if (initialState) {
+    apolloClient.cache.restore(initialState)
+  }
 
-  // Create the Apollo Client once in the client
-  if (!apolloClient) apolloClient = _apolloClient
-
-  return _apolloClient
+  return apolloClient
 }

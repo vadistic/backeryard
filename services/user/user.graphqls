@@ -1,0 +1,17 @@
+enum UserStatus {
+  ACTIVE
+}
+
+type User {
+  id: ID!
+  firstName: String!
+  status: UserStatus!
+}
+
+type Query {
+  viewer: User!
+}
+
+type Mutation {
+  createUser: User
+}

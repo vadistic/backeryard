@@ -2,7 +2,7 @@ import { InMemoryCache, gql } from '@apollo/client'
 import { MockedProvider } from '@apollo/client/testing'
 import renderer from 'react-test-renderer'
 
-import Index from '../pages'
+import Index from '../../pages'
 
 const cache = new InMemoryCache()
 

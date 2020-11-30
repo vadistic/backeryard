@@ -5,7 +5,7 @@ import React from 'react'
 import { useApollo } from '../apollo/hooks'
 
 export const App: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const apolloClient = useApollo(pageProps.initialApolloState)
+  const apolloClient = useApollo()
 
   return (
     <ApolloProvider client={apolloClient}>

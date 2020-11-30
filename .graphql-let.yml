@@ -1,5 +1,5 @@
-schema: 'apollo/**/*.graphqls'
-schemaEntrypoint: 'apollo/schema.graphqls'
+schema: 'services/**/*.graphqls'
+schemaEntrypoint: 'services/schema.graphqls'
 documents: '**/*.graphql'
 plugins:
   - typescript
@@ -8,4 +8,4 @@ plugins:
 config:
   dedupeOperationSuffix: true
   addOperationExport: true
-cacheDir: __generated__
+cacheDir: .generated

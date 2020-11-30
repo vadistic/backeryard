@@ -1,8 +1,7 @@
 # codegen
 *.graphql.d.ts
 *.graphqls.d.ts
-*.ts.d.ts
-__generated__
+.generated
 
 # build
 .next
@@ -10,3 +9,6 @@ __generated__
 # pwa
 public/*.js
 public/*.map
+
+# vercel
+.vercel

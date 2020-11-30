@@ -1,4 +1,4 @@
-import { StatusQueryDocument, StatusQuery } from '../apollo/queries/status.graphql'
+import { StatusQueryDocument, StatusQuery } from '../../apollo/queries/status.graphql'
 
 import { client } from './client'
 

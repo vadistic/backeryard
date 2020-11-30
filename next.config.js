@@ -16,6 +16,8 @@ const config = {
         fs: 'empty',
         net: 'empty',
         tls: 'empty',
+        child_process: 'empty',
+        'fast-crc32c': 'empty',
       }
     }
 
@@ -28,6 +30,7 @@ const config = {
     config.module.rules.push({
       test: /\.graphqls$/,
       exclude: /node_modules/,
+      // graphql-let/schema/loader allows watching schema changes
       use: ['graphql-let/schema/loader', 'graphql-tag/loader'],
     })
 

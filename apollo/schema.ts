@@ -1,15 +1,16 @@
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge'
 import { makeExecutableSchema } from 'apollo-server-micro'
 
-import rootSchema from './feature/root.graphqls'
-import { rootResolvers } from './feature/root.resolver'
-import userSchema from './feature/user.graphqls'
-import { userResolvers } from './feature/user.resolver'
+import rootSchema from '../services/status/status.graphqls'
+import statusResolver from '../services/status/status.resolver'
+import userSchema from '../services/user/user.graphqls'
+import userResolver from '../services/user/user.resolver'
+
 import { ResolverContext } from './types'
 
 export const typeDefs = mergeTypeDefs([rootSchema, userSchema])
 
-export const resolvers = mergeResolvers<ResolverContext, any>([rootResolvers, userResolvers])
+export const resolvers = mergeResolvers<ResolverContext, any>([statusResolver, userResolver])
 
 export const schema = makeExecutableSchema({
   typeDefs,
