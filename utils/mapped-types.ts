@@ -1,7 +1,7 @@
 import { defaultMetadataStorage as classTransformerMetadataStorage } from 'class-transformer/storage'
 import { IsOptional, getMetadataStorage as getClassValidatorMetadataStorage } from 'class-validator'
 
-import { ClassType } from './utils'
+import { ClassType } from './types'
 
 /*
  * based on

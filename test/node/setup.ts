@@ -1,10 +1,14 @@
 import 'reflect-metadata'
 import dotenv from 'dotenv'
 
-import { firebaseApp } from '../../firebase/node'
+import { firebaseApp, initFirebaseNode } from '../../firebase/node'
 
 dotenv.config()
 
+beforeAll(() => {
+  initFirebaseNode()
+})
+
 afterAll(() => {
-  firebaseApp?.firestore().terminate()
+  firebaseApp.delete()
 })

@@ -1,13 +1,19 @@
-import { collection, all } from 'typesaurus'
+import { get, all, add } from 'typesaurus'
 
-import { ResolverContext } from '../../apollo/types'
+import { RefID, toRef } from '../utils'
 
-import { UserModel } from './user.model'
+import { User, UserCreateData, users } from './user.model'
 
-export const userCollection = collection<UserModel>('user')
+export async function getAllUsers() {
+  return all(users)
+}
 
-export async function findManyProducers(_ctx: ResolverContext) {
-  const docs = await all(userCollection)
+export async function getUser(refId: RefID<User>) {
+  return get(toRef(users, refId))
+}
 
-  return docs.map(doc => doc.data)
+// ────────────────────────────────────────────────────────────────────────────────
+
+export async function createUser(data: UserCreateData) {
+  return add(users, data)
 }

@@ -15,7 +15,9 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier -w -l .",
     "lint": "eslint --ext ts,tsx .",
-    "clean": "rimraf __generated__ .next {lib,pages}/**/*.{graphql,graphqls}.d.ts"
+    "clean": "rimraf __generated__ .next {lib,pages}/**/*.{graphql,graphqls}.d.ts",
+    "fb:seed": "ts-node -P tsconfig.cjs.json test/scripts/seed.ts",
+    "fb:clean": "ts-node -P tsconfig.cjs.json test/scripts/clean.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.2.9",
